@@ -2,11 +2,22 @@
 
 	include 'connection.php';
 
-	$name 		= $_POST['Artikelnummer_im_Shop'];
-	$email 		= $_POST['EAN_GTIN_Barcodenummer_UPC'];
-	$password   = $_POST['Herstellerartikelnummern_HAN_MPN'];
+	$Artikelnummer_im_Shop 				= $_POST['Artikelnummer_im_Shop'];
+	$EAN_GTIN_Barcodenummer_UPC 		= $_POST['EAN_GTIN_Barcodenummer_UPC'];
+	$Herstellerartikelnummern_HAN_MPN   = $_POST['Herstellerartikelnummern_HAN_MPN'];
+	$Hersteller_Markenname   			= $_POST['Hersteller_Markenname'];
 
-	$sql = "INSERT INTO app_table (Artikelnummer_im_Shop, EAN_GTIN_Barcodenummer_UPC, Herstellerartikelnummern_HAN_MPN) VALUES ('{$name}', '{$email}', '{$password}' )";
+	$sql = "INSERT INTO app_table (
+			Artikelnummer_im_Shop, 
+			EAN_GTIN_Barcodenummer_UPC,
+		 	Herstellerartikelnummern_HAN_MPN, 
+		 	Hersteller_Markenname) 
+
+	VALUES ('{$Artikelnummer_im_Shop}', 
+			'{$EAN_GTIN_Barcodenummer_UPC}', 
+			'{$Herstellerartikelnummern_HAN_MPN}', 
+			'{$Hersteller_Markenname}')";
+
 	$con->query($sql);
 
 	echo "<td>{$name}</td>";

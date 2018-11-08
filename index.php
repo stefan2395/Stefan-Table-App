@@ -46,6 +46,11 @@
 				</li>
 
 				<li>
+					<label>Hersteller Markenname</label>
+					<input type="text" name="Hersteller_Markenname" id="Hersteller_Markenname">
+				</li>
+
+				<li>
 					<input type="submit" name="submit" id="save">
 				</li>
 
@@ -62,7 +67,7 @@
 
 	$(document).ready(function() {
 
-			// =============> DISPLAY Table  <=============
+		// =============> DISPLAY Table  <=============
 			$.ajax({
 				type: "GET",
 				url:  "table.php",
@@ -71,7 +76,7 @@
 					$("#responsveTable").html(response);
 				}
 			});
-			// =============> END: DISPLAY Table  <=============
+		// =============> END: DISPLAY Table  <=============
 
 
 
@@ -134,6 +139,9 @@
 
 			var Herstellerartikelnummern_HAN_MPN = row.closest("tr").find("td:eq(3)").text();
 			$("#Herstellerartikelnummern_HAN_MPN").val(Herstellerartikelnummern_HAN_MPN);
+
+			var Hersteller_Markenname = row.closest("tr").find("td:eq(4)").text();
+			$("#Hersteller_Markenname").val(Hersteller_Markenname)
 		});
 		// =============> END: UPDATE Row  <=============
 
@@ -170,7 +178,7 @@
 	
 
 
-
+		// =============> ADD Class active for popup  <=============
 		$(".open-button").on("click", function(){
 			$(".form-popup").fadeIn("500").addClass("active");
 		});
@@ -181,6 +189,9 @@
 				location.reload();
 			});
 		});
+		// =============> END: ADD Class active for popup  <=============
+
+
 
 	});
 	

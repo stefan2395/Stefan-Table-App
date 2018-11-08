@@ -10,6 +10,7 @@
 	<td align=center><b>Artikelnummer im Shop</b></td>
 	<td align=center><b>EAN/GTIN/Barcodenummer/UPC</b></td>
 	<td align=center><b>Herstellerartikelnummern HAN/MPN</b></td>
+	<td align=center><b>Hersteller Markenname</b></td>
 	<td align=center><b>Action</b></td>";
 	?>
 
@@ -20,6 +21,7 @@
 		    <td align=center><?php echo $data[1] ?></td>
 		    <td align=center><?php echo $data[2] ?></td>
 		    <td align=center><?php echo $data[3] ?></td>
+		    <td align=center><?php echo $data[4] ?></td>
 		    <td align=center>
 
 		    	<a href="#" class="delete-button" type="button" id="delete" name="delete" data-id="<?php echo $data['0'] ?>">Delete</a>
