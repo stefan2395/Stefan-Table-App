@@ -1,0 +1,67 @@
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.open-button {
+	color: green;
+	border: none;
+	cursor: pointer;
+	opacity: 0.8;
+	position: relative;
+	width: 280px;
+}
+
+.edit-button {
+	color: blue;
+}
+
+.delete-button {
+	color: red;
+}
+
+.form-popup {
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border: 3px solid #f1f1f1;
+	z-index: 9;
+	background: #000000c7;
+}
+.active {
+	visibility: visible;
+}
+
+.form__container {
+	background: #fff;
+	width: 80%;
+	margin:0 auto;
+	margin-top: 50px;
+	& > ul {
+		padding: 20px;
+		& > li {
+			label, input[type=text] {
+				display:inline-block;
+				width: 30%;
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+		}
+	}
+}
+
+.cancel {
+    font-size: 30px;
+    color: red;
+    text-decoration: none;
+    margin: 10px;
+}
+
+	
