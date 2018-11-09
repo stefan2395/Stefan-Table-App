@@ -1,3 +1,49 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote {
+  &:before, &:after {
+    content: '';
+    content: none; } }
+
+q {
+  &:before, &:after {
+    content: '';
+    content: none; } }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+
+
+
+
+$greyBlue: #434972;
+$black: #1F2739;
+$darkBlue: #0084ec;
+$whiteGrey: #d5d5d5;
+$darkGrey: #525252;
+
 li {
 	list-style: none;
 }
@@ -7,6 +53,7 @@ a {
 	padding: 10px;
 }
 
+/* =====> BUTTONS STYLE <===== */
 .open-button {
 	color: green;
 	border: none;
@@ -63,5 +110,133 @@ a {
     text-decoration: none;
     margin: 10px;
 }
-
+/* =====> END: BUTTONS STYLE <===== */
 	
+
+
+
+
+
+/* =====> TABLE STYLE <===== */
+
+.table__container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+table {
+	border-collapse: separate;
+    border-spacing: 0px;
+	& > thead {
+		background-color: $black;
+    	color: $darkBlue;
+    	font-size: 18px;
+    	font-weight: bold;
+    	border: none;
+		& > tr {
+			text-align: left;
+			& > th {
+				padding: 20px;
+				border: none;
+				cursor: pointer;
+				-webkit-transition: color 1s;
+				&:hover {
+					color: green;
+				}
+			}
+		}
+	}
+
+	& > tbody {
+		& > tr {
+			&:nth-child(odd) {
+				background: $greyBlue;
+				color: $whiteGrey;
+			}
+
+			&:nth-child(even) {
+				background: $darkGrey;
+				color: $whiteGrey;
+			}
+
+			& > td {
+				text-align: left;
+				border: solid 1px $black;
+				padding: 20px;
+				&:hover {
+					background: yellow;
+					transform: translate3d(5px, 5px, 5px);
+					transition-duration: 1s;
+					-webkit-transition-duration: 1s;
+					color: $greyBlue;
+					box-shadow: -1px -1px #7b7b00,
+					-2px -2px #7b7b00,
+					-3px -3px #7b7b00,
+					-4px -4px #7b7b00,
+					-5px -5px #7b7b00;
+				}
+			}
+		}
+	}
+}
+
+
+/* =====> END: TABLE STYLE <===== */
+
+
+/* =====> ADD NEW button <===== */
+
+.add-new__container {
+	margin: 20px 0 20px 0;
+}
+
+.add-new {
+	border:solid 2px green;
+	border-radius: 10px;
+	padding: 10px 20px 10px 20px;
+	&:hover {
+		background:green;
+		color: white;
+		transition-duration: 0.5s;
+		-webkit-transition-duration: 0.5s;
+	}
+}
+
+
+/* =====>END: ADD NEW button <===== */
+
+
+
+
+/* =====> PAGINATION caontainer on >>> table.php <<< PAGE <===== */
+
+.pagination_container {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+    line-height: 50px;
+	margin-top: 20px;
+	border-top: solid 1px grey;
+	border-bottom: solid 1px grey;
+	& > span {
+		cursor: pointer;
+		padding: 10px;
+		border-radius: 50%;
+		margin: 5px;
+		&:hover {
+			background-color: #b3b3b3;
+			color: #fff;
+			transition-duration: 0.5s;
+			-webkit-transition-duration: 0.5s;
+		}
+	}
+}
+
+.pagActive {
+	background-color: #b3b3b3;
+	color: #fff;
+	transition-duration: 0.5s;
+	-webkit-transition-duration: 0.5s;
+}
+
+/* =====> END: PAGINATION caontainer on >>> table.php <<< PAGE <===== */

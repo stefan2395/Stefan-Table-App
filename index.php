@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Table JSON-AJAX</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-</head>
-<body>
-	
-
-	<a href="#" class="open-button">Add new</a>
+<?php include 'header.php'; ?>
 
 
-
-
-	<div id="responsveTable">
+	<div class="table__container">
+		<div class="add-new__container">
+			<a href="#" class="open-button add-new">Add new</a>
+		</div>
 		
+		<div class="select-list__container">
+			<select id="a1_title">
+		  		<option>Default</option>
+			</select>
+		</div>
+
+		<div id="responsveTable" class="">
+			
+		</div>
 	</div>
 
 
@@ -67,16 +63,43 @@
 
 	$(document).ready(function() {
 
+
 		// =============> DISPLAY Table  <=============
+		load_data();
+		function load_data(page) {
 			$.ajax({
-				type: "GET",
+				method: "POST",
 				url:  "table.php",
-				dataType: "html",
-				success: function(response) {
-					$("#responsveTable").html(response);
+				data:{page:page},
+				success: function(data) {
+					$("#responsveTable").html(data);
 				}
 			});
+		}
+	      $(document).on('click', '.pagination_link', function(){  
+	           var page = $(this).attr("id");  
+	           load_data(page);  
+	      });
 		// =============> END: DISPLAY Table  <=============
+
+
+
+
+		// =============> SELECT LIST BRAND Table  <=============
+		$(function(){
+		  	var items="";
+	 	 	$.getJSON("select_brand.php",function(data){
+
+		    $.each(data,function(index,item) {
+		      	items+="<option value='"+item.ID+"'>"+item.Hersteller_Markenname+"</option>";
+		    });
+		    	$("#a1_title").html(items); 
+		  });
+
+		});
+		// =============>END: SELECT LIST BRAND Table  <=============
+
+
 
 
 
@@ -193,11 +216,76 @@
 
 
 
+	   
+
 	});
 	
+
+
 
 
 </script>
 
 </html>
 
+<!--  
+===========> PRIKAZIVANJE REDOVA IZ SELECT LISTE !!!! NESTO NE RADI !!!! ZAJEDNO SA FAJLOM load_brand.php <===========
+
+		$('#brand').change(function(){  
+           	var brand_id = $(this).val();  
+           	$.ajax({  
+	     	url:"load_brand.php",  
+                method:"POST",  
+                data:{brand_id:brand_id},  
+                success:function(data){  
+                     $('#show_product').html(data);  
+                }  
+           	});  
+      	});  
+
+		<select name="brand" id="brand">
+			<option value="">Show all products</option>
+			<?php echo fill_brand($con); ?>
+	</select>
+
+	<div class="row" id="show_product">  
+          	<?php echo fill_product($con); ?>  
+ 	</div>
+
+	
+<?php 
+	include 'connection.php';
+
+	function fill_brand($con) {
+		$output = '';
+
+		$sql = "SELECT DISTINCT Hersteller_Markenname FROM app_table";
+
+		$result =	mysqli_query($con, $sql);
+
+		while ($row = mysqli_fetch_array($result)) {
+			$output .= '<option value="'.$row["Hersteller_Markenname"].'">'.$row["Hersteller_Markenname"].'</option>';
+		}
+		return $output;
+	}
+
+
+	function fill_product($con)  {  
+		$output = '';  
+		$sql = "SELECT DISTINCT Hersteller_Markenname FROM app_table";  
+		$result = mysqli_query($con, $sql); 
+
+		while($row = mysqli_fetch_array($result))  { 
+
+		$output .= '<div class="col-md-3">';  
+		$output .= '<div style="border:1px solid #ccc; padding:20px; margin-bottom:20px;">'.$row["Hersteller_Markenname"].'';  
+		$output .=     '</div>';  
+		$output .=     '</div>';  
+
+      }  
+      return $output;  
+ }  
+
+?>
+
+-->
