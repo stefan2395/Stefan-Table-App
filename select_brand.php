@@ -10,5 +10,7 @@
 	    $data[] = $row; 
 	};
 
+
 	echo json_encode($data);   
-?>
+
+	

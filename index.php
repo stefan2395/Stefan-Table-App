@@ -1,4 +1,5 @@
 <?php include 'header.php'; ?>
+	
 
 
 	<div class="table__container">
@@ -12,10 +13,15 @@
 			</select>
 		</div>
 
+
+
+
 		<div id="responsveTable" class="">
 			
 		</div>
 	</div>
+
+
 
 
 	<div class="form-popup">
@@ -70,18 +76,21 @@
 			$.ajax({
 				method: "POST",
 				url:  "table.php",
-				data:{page:page},
+				data:{
+					page:page 
+				},
 				success: function(data) {
 					$("#responsveTable").html(data);
 				}
 			});
 		}
-	      $(document).on('click', '.pagination_link', function(){  
-	           var page = $(this).attr("id");  
-	           load_data(page);  
-	      });
-		// =============> END: DISPLAY Table  <=============
 
+		// pagination
+		$(document).on('click', '.pagination_link', function(){  
+		   	var page = $(this).attr("id");  
+		   	load_data(page);  
+		});
+		// =============> END: DISPLAY Table  <=============
 
 
 
@@ -91,12 +100,26 @@
 	 	 	$.getJSON("select_brand.php",function(data){
 
 		    $.each(data,function(index,item) {
-		      	items+="<option value='"+item.ID+"'>"+item.Hersteller_Markenname+"</option>";
+		      	items+="<option value='"+item.Hersteller_Markenname+"'>"+item.Hersteller_Markenname+"</option>";
 		    });
 		    	$("#a1_title").html(items); 
 		  });
 
-		});
+		});	
+
+
+			$('#a1_title').change(function(){
+                //Selected value
+                var inputValue = $(this).val();
+                alert("value in js "+inputValue);
+                
+                //Ajax for calling php function
+                $.post('select_brand.php', { dropdownValue: inputValue }, function(data){
+                    alert('ajax completed. Response:  '+data);
+                    //do after submission operation in DOM
+                });
+            });
+
 		// =============>END: SELECT LIST BRAND Table  <=============
 
 
@@ -214,9 +237,7 @@
 		});
 		// =============> END: ADD Class active for popup  <=============
 
-
-
-	   
+ 
 
 	});
 	
@@ -227,65 +248,3 @@
 </script>
 
 </html>
-
-<!--  
-===========> PRIKAZIVANJE REDOVA IZ SELECT LISTE !!!! NESTO NE RADI !!!! ZAJEDNO SA FAJLOM load_brand.php <===========
-
-		$('#brand').change(function(){  
-           	var brand_id = $(this).val();  
-           	$.ajax({  
-	     	url:"load_brand.php",  
-                method:"POST",  
-                data:{brand_id:brand_id},  
-                success:function(data){  
-                     $('#show_product').html(data);  
-                }  
-           	});  
-      	});  
-
-		<select name="brand" id="brand">
-			<option value="">Show all products</option>
-			<?php echo fill_brand($con); ?>
-	</select>
-
-	<div class="row" id="show_product">  
-          	<?php echo fill_product($con); ?>  
- 	</div>
-
-	
-<?php 
-	include 'connection.php';
-
-	function fill_brand($con) {
-		$output = '';
-
-		$sql = "SELECT DISTINCT Hersteller_Markenname FROM app_table";
-
-		$result =	mysqli_query($con, $sql);
-
-		while ($row = mysqli_fetch_array($result)) {
-			$output .= '<option value="'.$row["Hersteller_Markenname"].'">'.$row["Hersteller_Markenname"].'</option>';
-		}
-		return $output;
-	}
-
-
-	function fill_product($con)  {  
-		$output = '';  
-		$sql = "SELECT DISTINCT Hersteller_Markenname FROM app_table";  
-		$result = mysqli_query($con, $sql); 
-
-		while($row = mysqli_fetch_array($result))  { 
-
-		$output .= '<div class="col-md-3">';  
-		$output .= '<div style="border:1px solid #ccc; padding:20px; margin-bottom:20px;">'.$row["Hersteller_Markenname"].'';  
-		$output .=     '</div>';  
-		$output .=     '</div>';  
-
-      }  
-      return $output;  
- }  
-
-?>
-
--->
